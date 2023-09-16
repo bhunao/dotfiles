@@ -22,7 +22,7 @@ vim.o.shiftwidth=2
 --  Telescope keymaps ==========================================
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader><Space>', telescope.find_files, { desc = "find files"})
-vim.keymap.set('n', '<leader>/', telescope.live_grep, { desc = ""})
+vim.keymap.set('n', '<leader>l', telescope.live_grep, { desc = ""})
 vim.keymap.set('n', '<leader>t', telescope.buffers, { desc = ""})
 -- git
 vim.keymap.set('n', '<leader>tg', telescope.git_files, { desc = "git files"})
@@ -35,5 +35,12 @@ vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, { desc = "open float 
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "prev diagnostic"})
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "next diagnostic"})
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, { desc = "diagnostics list"})
+-- comments
+local function comment_stuff()
+		require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1)
+	end
+
+vim.keymap.set('n', "<leader>/" , comment_stuff, { desc = "Toggle comment line" })
+vim.keymap.set('v', "<leader>/" , "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", { desc = "Toggle comment for selection" })
 --  ============================================================
 --  ============================================================

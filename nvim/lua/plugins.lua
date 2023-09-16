@@ -18,6 +18,9 @@ local plugins = {
 	"ellisonleao/gruvbox.nvim", -- theme
 	'nvim-lualine/lualine.nvim', -- status line
 
+	-- comment
+  { 'numToStr/Comment.nvim', opts = {} },
+
 	-- Useful plugin to show you pending keybinds.
 	{
 		'folke/which-key.nvim',

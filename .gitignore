@@ -1,8 +1,7 @@
-*
-!nvim/*
-!i3/*
+/*
+!nvim/
+!i3/
 !.gitattributes
 !.gitignore
 !readme.md
 !.gitkeep
-!*.php

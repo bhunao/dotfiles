@@ -19,7 +19,7 @@ local plugins = {
 	'nvim-lualine/lualine.nvim', -- status line
 
 	-- comment
-  { 'numToStr/Comment.nvim', opts = {} },
+	{ 'numToStr/Comment.nvim', opts = {} },
 
 	-- Useful plugin to show you pending keybinds.
 	{
@@ -71,7 +71,19 @@ local plugins = {
 		dependencies = {
 			'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip',
 			'hrsh7th/cmp-nvim-lsp', 'rafamadriz/friendly-snippets', },
-	}
+	},
+
+	-- Toggle term
+	{
+		{
+			'akinsho/toggleterm.nvim',
+			version = "*",
+			opts = {
+				open_mapping = [[<c-\>]],
+				direction = "float",
+			},
+		}
+	},
 
 }
 

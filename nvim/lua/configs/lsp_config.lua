@@ -1,12 +1,6 @@
 require('neodev').setup()
 
 local on_attach = function(_, bufnr)
-	-- NOTE: Remember that lua is a real programming language, and as such it is possible
-	-- to define small helper and utility functions so you don't have to repeat yourself
-	-- many times.
-	--
-	-- In this case, we create a function that lets us more easily define mappings specific
-	-- for LSP related items. It sets the mode, buffer and description for us each time.
 	local nmap = function(keys, func, desc)
 		if desc then
 			desc = 'LSP: ' .. desc
@@ -19,15 +13,14 @@ local on_attach = function(_, bufnr)
 	nmap('<leader>ca', vim.lsp.buf.code_action, 'code action')
 
 	nmap('<leader>gd', vim.lsp.buf.definition, 'definition')
-	nmap('<leader>gD', vim.lsp.buf.declaration, 'type definition')
+	nmap('<leader>gt', vim.lsp.buf.declaration, 'type definition')
 	nmap('<leader>gr', require('telescope.builtin').lsp_references, 'references')
 	nmap('<leader>gi', require('telescope.builtin').lsp_implementations, 'implementations')
 	nmap('<leader>gs', require('telescope.builtin').lsp_document_symbols, 'go to document symbols')
-	nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'workspace symbols')
 
 	-- See `:help K` for why this keymap
-	nmap('<leader>d', vim.lsp.buf.hover, 'hover documentation')
-	nmap('<leader>d', vim.lsp.buf.signature_help, 'signature documentation')
+	nmap('<leader>k', vim.lsp.buf.hover, 'hover documentation')
+	nmap('<leader>K', vim.lsp.buf.signature_help, 'signature documentation')
 
 	-- Create a command `:Format` local to the LSP buffer
 	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)

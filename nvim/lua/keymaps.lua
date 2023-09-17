@@ -14,21 +14,22 @@ vim.o.updatetime = 250 -- Decrease update time
 vim.o.timeoutlen = 300 -- Decrease update time
 -- vim.o.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
 vim.o.termguicolors = true -- NOTE: You should make sure your terminal supports this
-vim.o.relativenumber = true
+vim.o.relativenumber = true -- numbers in line
 vim.o.wrap = false
 vim.o.cursorline = true
 vim.o.tabstop=2
 vim.o.shiftwidth=2
 --  Telescope keymaps ==========================================
 local telescope = require('telescope.builtin')
-vim.keymap.set('n', '<leader><Space>', telescope.find_files, { desc = "find files"})
-vim.keymap.set('n', '<leader>l', telescope.live_grep, { desc = ""})
-vim.keymap.set('n', '<leader>t', telescope.buffers, { desc = ""})
+vim.keymap.set('n', '<leader>F', telescope.find_files, { desc = "find files"})
+vim.keymap.set('n', '<leader>ff', telescope.find_files, { desc = "find files"})
+vim.keymap.set('n', '<leader>fg', telescope.live_grep, { desc = "live grep"})
+vim.keymap.set('n', '<leader><space>', telescope.buffers, { desc = "buffer files"})
 -- git
-vim.keymap.set('n', '<leader>tg', telescope.git_files, { desc = "git files"})
-vim.keymap.set('n', '<leader>tgs', telescope.git_status, { desc = "git status"})
-vim.keymap.set('n', '<leader>tgt', telescope.git_branches, { desc = "git branches"})
-vim.keymap.set('n', '<leader>tgc', telescope.git_commits, { desc = "git commits"})
+vim.keymap.set('n', '<leader>fF', telescope.git_files, { desc = "git files"})
+vim.keymap.set('n', '<leader>fs', telescope.git_status, { desc = "git status"})
+vim.keymap.set('n', '<leader>fb', telescope.git_branches, { desc = "git branches"})
+vim.keymap.set('n', '<leader>fc', telescope.git_commits, { desc = "git commits"})
 --  Diagnostics keymaps ========================================
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, { desc = "open float diagnostics"})
@@ -43,4 +44,29 @@ local function comment_stuff()
 vim.keymap.set('n', "<leader>/" , comment_stuff, { desc = "Toggle comment line" })
 vim.keymap.set('v', "<leader>/" , "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", { desc = "Toggle comment for selection" })
 --  ============================================================
+vim.keymap.set('n', "<leader>z" , "ciw\"\"<esc>P<esc>b", { desc = "\"\" quote word" })
+--  Terminal remapings =========================================
+function _G.set_terminal_keymaps()
+  local opts = {buffer = 0}
+  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+  vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+  vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+  vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+  vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+  vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+end
+
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+--  ============================================================
+--  ============================================================
+--  Labels for which key =======================================
+local wk = require("which-key")
+
+wk.register({
+  f =  "file",
+  g =  "go to",
+  c =  "code action",
+}, { prefix = "<leader>" })
 --  ============================================================

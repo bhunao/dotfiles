@@ -221,4 +221,4 @@ client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
 client.urgent           $red $red $white $red $red
 
 
-exec --no-startup-id xmodmap ~/.xmodmap
+exec xmodmap ~/.xmodmap

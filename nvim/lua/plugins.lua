@@ -17,11 +17,21 @@ local plugins = {
 	'zah/nim.vim',              -- Nim syntax highlighter only
 	"ellisonleao/gruvbox.nvim", -- theme
 	'nvim-lualine/lualine.nvim', -- status line
+	'NvChad/nvim-colorizer.lua', -- Colorize: give color to hex codes
 
-	-- comment
+	-- Start page
+	{
+		'goolord/alpha-nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+		config = function ()
+			require'alpha'.setup(require'alpha.themes.startify'.config)
+		end
+	},
+
+	-- Comment
 	{ 'numToStr/Comment.nvim', opts = {} },
 
-	-- Useful plugin to show you pending keybinds.
+	-- Which Key: show keybidings menu
 	{
 		'folke/which-key.nvim',
 		opts = {
@@ -85,6 +95,8 @@ local plugins = {
 		}
 	},
 
+
 }
 
 require("lazy").setup(plugins, opt)
+require('colorizer').setup {}

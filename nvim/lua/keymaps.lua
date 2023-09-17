@@ -1,24 +1,24 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 --  ============================================================
-vim.o.hlsearch = true -- Set highlight on search
-vim.wo.number = true -- Make line numbers default
-vim.o.mouse = 'a' -- Enable mouse mode
-vim.o.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
-vim.o.breakindent = true -- Enable break indent
-vim.o.undofile = true -- Save undo history
-vim.o.ignorecase = true -- Case-insensitive searching UNLESS \C or capital in search
-vim.o.smartcase = true -- Case-insensitive searching UNLESS \C or capital in search
-vim.wo.signcolumn = 'yes' -- Keep signcolumn on by default
-vim.o.updatetime = 250 -- Decrease update time
-vim.o.timeoutlen = 300 -- Decrease update time
--- vim.o.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
-vim.o.termguicolors = true -- NOTE: You should make sure your terminal supports this
-vim.o.relativenumber = true -- numbers in line
-vim.o.wrap = false
-vim.o.cursorline = true
-vim.o.tabstop=2
-vim.o.shiftwidth=2
+vim.o.hlsearch = true 						-- Set highlight on search
+vim.wo.number = true 							-- Make line numbers default
+vim.o.mouse = 'a' 								-- Enable mouse mode
+vim.o.clipboard = 'unnamedplus' 	-- Sync clipboard between OS and Neovim.
+vim.o.breakindent = true 					-- Enable break indent
+vim.o.undofile = true 						-- Save undo history
+vim.o.ignorecase = true 					-- Case-insensitive searching UNLESS \C or capital in search
+vim.o.smartcase = true 						-- Case-insensitive searching UNLESS \C or capital in search
+vim.wo.signcolumn = 'yes' 				-- Keep signcolumn on by default
+vim.o.updatetime = 250 						-- Decrease update time
+vim.o.timeoutlen = 300 						-- Decrease update time
+vim.o.termguicolors = true 				-- NOTE: You should make sure your terminal supports this
+vim.o.relativenumber = true 			-- numbers in line relative by cursor line
+vim.o.wrap = false 								-- dont let text wrap if dont fit in line
+vim.o.cursorline = true 					-- highlight cursor line
+vim.o.tabstop=2 									-- tab size i guess
+vim.o.shiftwidth=2 								-- tab size i guess
+vim.o.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
 --  Telescope keymaps ==========================================
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>F', telescope.find_files, { desc = "find files"})
@@ -31,12 +31,11 @@ vim.keymap.set('n', '<leader>fs', telescope.git_status, { desc = "git status"})
 vim.keymap.set('n', '<leader>fb', telescope.git_branches, { desc = "git branches"})
 vim.keymap.set('n', '<leader>fc', telescope.git_commits, { desc = "git commits"})
 --  Diagnostics keymaps ========================================
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, { desc = "open float diagnostics"})
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "prev diagnostic"})
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "next diagnostic"})
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, { desc = "diagnostics list"})
--- comments
+--  Comment lines ==============================================
 local function comment_stuff()
 		require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1)
 	end
@@ -56,25 +55,22 @@ function _G.set_terminal_keymaps()
   vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
   vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
 end
-
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 local Terminal  = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
-function _lazygit_toggle()
-  lazygit:toggle()
-end
+function _lazygit_toggle() lazygit:toggle() end
 
 vim.api.nvim_set_keymap("n", "<leader>tg", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true, desc="LazyGit"})
 --  ============================================================
 --  ============================================================
---  Labels for which key =======================================
+--  Labels for [which key] =======================================
 local wk = require("which-key")
 
 wk.register({
   f =  "file",
   g =  "go to",
   c =  "code action",
+	t = "terminal apps",
 }, { prefix = "<leader>" })
 --  ============================================================

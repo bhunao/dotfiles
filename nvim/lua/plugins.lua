@@ -14,14 +14,16 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
 	'wbthomason/packer.nvim',
 	-- My plugins ==============================
-	'zah/nim.vim',              -- Nim syntax highlighter only
+	-- Themes ==================================
 	"ellisonleao/gruvbox.nvim", -- theme
+	{ 'rose-pine/neovim', name = 'rose-pine' }, -- theme
+
+	'zah/nim.vim',              -- Nim syntax highlighter only
 	'nvim-lualine/lualine.nvim', -- status line
 	'NvChad/nvim-colorizer.lua', -- Colorize: give color to hex codes
 
 	-- Start page
-	{
-		'goolord/alpha-nvim',
+	{ 'goolord/alpha-nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
 		config = function ()
 			require'alpha'.setup(require'alpha.themes.startify'.config)
@@ -89,7 +91,7 @@ local plugins = {
 			'akinsho/toggleterm.nvim',
 			version = "*",
 			opts = {
-				open_mapping = [[<c-\>]],
+				open_mapping = [[<c-_>]],
 				direction = "float",
 			},
 		}

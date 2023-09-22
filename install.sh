@@ -14,5 +14,5 @@ sudo apt install rofi
 
 git clone https://github.com/bhunao/dotfiles.git
 cd dotfiles
-cp -r nvim ~/.config/nvim
-cp -r i3 ~/.config/i3
+cp -r nvim ~/.config/
+cp -r i3 ~/.config/

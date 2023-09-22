@@ -4,3 +4,5 @@
 - rofi
 - neovim
 - lazygit
+
+> install.sh

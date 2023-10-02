@@ -15,18 +15,19 @@ local plugins = {
 	'wbthomason/packer.nvim',
 	-- My plugins ==============================
 	-- Themes ==================================
-	"ellisonleao/gruvbox.nvim", -- theme
-	{ 'rose-pine/neovim', name = 'rose-pine' }, -- theme
+	"ellisonleao/gruvbox.nvim",                     -- theme
+	{ 'rose-pine/neovim',      name = 'rose-pine' }, -- theme
 
-	'zah/nim.vim',              -- Nim syntax highlighter only
-	'nvim-lualine/lualine.nvim', -- status line
-	'NvChad/nvim-colorizer.lua', -- Colorize: give color to hex codes
+	'zah/nim.vim',                                  -- Nim syntax highlighter only
+	'nvim-lualine/lualine.nvim',                    -- status line
+	'NvChad/nvim-colorizer.lua',                    -- Colorize: give color to hex codes
 
 	-- Start page
-	{ 'goolord/alpha-nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-		config = function ()
-			require'alpha'.setup(require'alpha.themes.startify'.config)
+	{
+		'goolord/alpha-nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		config = function()
+			require 'alpha'.setup(require 'alpha.themes.startify'.config)
 		end
 	},
 
@@ -84,6 +85,10 @@ local plugins = {
 			'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip',
 			'hrsh7th/cmp-nvim-lsp', 'rafamadriz/friendly-snippets', },
 	},
+	'neovim/nvim-lspconfig',
+	'hrsh7th/cmp-buffer',
+	'hrsh7th/cmp-path',
+	'hrsh7th/cmp-cmdline',
 
 	-- Toggle term
 	{

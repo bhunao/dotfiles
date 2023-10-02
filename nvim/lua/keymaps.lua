@@ -16,15 +16,15 @@ vim.o.termguicolors = true 				-- NOTE: You should make sure your terminal suppo
 vim.o.relativenumber = true 			-- numbers in line relative by cursor line
 vim.o.wrap = false 								-- dont let text wrap if dont fit in line
 vim.o.cursorline = true 					-- highlight cursor line
-vim.o.tabstop=2 									-- tab size i guess
-vim.o.shiftwidth=2 								-- tab size i guess
+vim.o.tabstop=4 									-- tab size i guess
+vim.o.shiftwidth=4 								-- tab size i guess
 vim.o.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
 --  Telescope keymaps ==========================================
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>F', telescope.find_files, { desc = "find files"})
-vim.keymap.set('n', '<leader>ff', telescope.find_files, { desc = "find files"})
+vim.keymap.set('n', '<leader><space>', telescope.find_files, { desc = "find files"})
 vim.keymap.set('n', '<leader>fg', telescope.live_grep, { desc = "live grep"})
-vim.keymap.set('n', '<leader><space>', telescope.buffers, { desc = "buffer files"})
+vim.keymap.set('n', '<leader>ff', telescope.buffers, { desc = "buffer files"})
 -- git
 vim.keymap.set('n', '<leader>fF', telescope.git_files, { desc = "git files"})
 vim.keymap.set('n', '<leader>fs', telescope.git_status, { desc = "git status"})

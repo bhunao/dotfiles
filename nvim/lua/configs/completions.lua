@@ -4,11 +4,42 @@ local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
-cmp.setup { snippet = {
-	expand = function(args)
-		luasnip.lsp_expand(args.body)
-	end,
-},
+local ok, lspkind = pcall(require, "lspkind")
+if not ok then
+  return
+end
+
+lspkind.init {
+  symbol_map = {
+    Copilot = "",
+  },
+}
+cmp.setup {
+	snippet = {
+		expand = function(args)
+			luasnip.lsp_expand(args.body)
+		end,
+	},
+
+	formatting = {
+		expandable_indicator = true,
+		format = lspkind.cmp_format {
+			with_text = false,
+			menu = {
+				buffer = "[BUF]",
+				nvim_lsp = "[LSP]",
+				nvim_lua = "[API]",
+				path = "[PATH]",
+				luasnip = "[SNIP]",
+				gh_issues = "[ISSUES]",
+			}
+		}
+	},
+
+	experimental = {
+      ghost_text = true,
+    },
+
 	mapping = cmp.mapping.preset.insert {
 		['<C-n>'] = cmp.mapping.select_next_item(),
 		['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -43,6 +74,8 @@ cmp.setup { snippet = {
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 	},
+
+
 }
 
 
@@ -72,4 +105,3 @@ cmp.setup.cmdline(':', {
 		{ name = 'cmdline' }
 	})
 })
-
